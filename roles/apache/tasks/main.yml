@@ -1,7 +1,37 @@
 ---
-- name: ganaration local key
-  local_action:
-   module: user
-   name: root
-   generate_ssh_key: yes
+---
+
+- name: Installation packages
+  yum:
+    name:
+      - git
+      - epel-release
+      - httpd
+      - php
+      - php-mysql
+    state: present
+
+- name: restart and enable apache
+  systemd:
+    name: httpd
+    enabled: yes
+    state: restarted
+
+- name: ouvrir port 80
+  firewalld:
+    port: http
+    permanent: yes
+    state: enabled
+
+- name: droit d'ecriture sur dossier http
+  file:
+   path: /var/www/html
+   state: directory
+   mode: 0755   
+  
+- name: copie app
+  copy:
+    src: app/
+    dest: /var/www/html
+
 # tasks file for apache
