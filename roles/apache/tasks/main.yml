@@ -1,7 +1,0 @@
----
-- name: ganaration local key
-  local_action:
-   module: user
-   name: root
-   generate_ssh_key: yes
-# tasks file for apache
