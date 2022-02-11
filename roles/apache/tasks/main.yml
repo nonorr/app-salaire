@@ -21,6 +21,11 @@
     permanent: yes
     state: enabled
 
+- name: recharger le firewall
+  systemd: 
+   service: firewalld
+   state: reloaded
+
 - name: droit d'ecriture sur dossier http
   file:
    path: /var/www/html
