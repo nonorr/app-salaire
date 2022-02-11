@@ -3,7 +3,6 @@
 - name: Installation packages
   yum:
     name:
-      - git
       - httpd
       - php
       - php-mysql
@@ -17,24 +16,20 @@
 
 - name: ouvrir port 80
   firewalld:
-    port: http
+    service: http
     permanent: yes
     state: enabled
-
-- name: recharger le firewall
-  systemd: 
-    service: firewalld
-    state: reloaded
+    immediate: true
+    
 
 - name: droit d'ecriture sur dossier http
   file:
    path: /var/www/html
    state: directory
-   mode: 0755   
-  
+   mode: 0755
+   
+   
 - name: copie app
   copy:
     src: app/
     dest: /var/www/html
-
-# tasks file for apache
