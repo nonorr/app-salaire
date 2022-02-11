@@ -7,7 +7,7 @@
     - mariadb-server
    state: present
 
-- name: restart and enable systemd nginx service
+- name: restart and enable systemd mariadb
   systemd:
     name: mariadb
     enabled: yes
