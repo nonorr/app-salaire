@@ -7,7 +7,7 @@
     - mariadb-server
    state: present
 
-- name: restart and enable systemd mariadb
+- name: restart mariadb service
   systemd:
     name: mariadb
     enabled: yes
@@ -15,12 +15,6 @@
 
 - name: Start mysql_secure_installation
   command: 'echo "& y y Mypasswd Mypasswd y y y y" | ./usr/bin/mysql_secure_installation'
-
-- name: restart and enable systemd maridb service
-  systemd:
-    name: mariadb
-    enabled: yes
-    state: enabled
 
 
 # tasks file for mariadb
