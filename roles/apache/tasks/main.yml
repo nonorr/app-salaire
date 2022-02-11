@@ -4,7 +4,6 @@
   yum:
     name:
       - git
-      - epel-release
       - httpd
       - php
       - php-mysql
