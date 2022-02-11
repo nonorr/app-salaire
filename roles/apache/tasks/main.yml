@@ -23,8 +23,8 @@
 
 - name: recharger le firewall
   systemd: 
-   service: firewalld
-   state: reloaded
+    service: firewalld
+    state: reloaded
 
 - name: droit d'ecriture sur dossier http
   file:
