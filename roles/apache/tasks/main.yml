@@ -1,6 +1,5 @@
 ---
-
-- name: Installation Packages
+- name: Installation packages
   yum:
     name:
       - git
@@ -10,21 +9,27 @@
       - php-mysql
     state: present
 
-- name: reboot apach
+- name: restart and enable apache
   systemd:
     name: httpd
     enabled: yes
     state: restarted
-    
-- name: port 80
+
+- name: ouvrir port 80
   firewalld:
-    service: http
+    port: http
     permanent: yes
     state: enabled
 
-- name: permission
+- name: droit d'ecriture sur dossier http
   file:
    path: /var/www/html
    state: directory
    mode: 0755
+
+- name: copie app
+  copy:
+     src: app/
+     dest: /var/www/html
+
 # tasks file for apache
